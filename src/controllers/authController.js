@@ -66,14 +66,14 @@ export const login = async (req,res)=>{
             where:{email:email}
         })
 
-        if(user.length ==  0){
-            return res.status(400).json({Error:"User not found.. Please Sign Up"})
+        if(!user){
+            return res.status(400).json({Error:"Invalid mail and password"})
         }
 
         const checkPassword = await bcrypt.compare(password,user.password)
 
         if(!checkPassword){
-            return res.status(403).json({Error:"Invalid Password"})
+            return res.status(403).json({Error:"Invalid mail and Password"})
         }
 
         const token = jwt.sign(
