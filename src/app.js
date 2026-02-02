@@ -2,6 +2,8 @@ import express from "express";
 import {router} from "./routes/authRoutes.js"
 import { taskRoute } from "./routes/taskRoute.js";
 const app = express()
+
+app.set("trust proxy", 1);
 app.use(express.json())
 
 
